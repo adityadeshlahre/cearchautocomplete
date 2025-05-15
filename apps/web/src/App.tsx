@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Landing from "./pages/Landing";
 import Form from "./pages/Form";
+import AutoComplete from "./components/AutoComplete";
 
 function App() {
   return (
@@ -8,7 +9,8 @@ function App() {
       <div>
         <Router>
           <Routes>
-            <Route path="/" element={<Landing />} />
+            <Route path="/" element={<AutoComplete />} />
+            <Route path="/l" element={<Landing />} />
             <Route path="/form" element={<Form />} />
           </Routes>
         </Router>
