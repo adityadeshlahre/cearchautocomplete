@@ -1,6 +1,20 @@
 import { parseAsInteger, useQueryState } from "nuqs";
 import { useSearchProduct } from "../hooks/useSearchProduct";
 import { useEffect, useState } from "react";
+import TextField from "@mui/material/TextField";
+import Paper from "@mui/material/Paper";
+import List from "@mui/material/List";
+import ListItem from "@mui/material/ListItem";
+import CircularProgress from "@mui/material/CircularProgress";
+import Box from "@mui/material/Box";
+import {
+  Button,
+  FormControl,
+  ListItemText,
+  MenuItem,
+  Select,
+  SelectChangeEvent,
+} from "@mui/material";
 
 const AutoComplete = () => {
   const [query, setQuery] = useQueryState("q");
@@ -19,7 +33,7 @@ const AutoComplete = () => {
     return () => clearTimeout(timeout);
   }, [inputValue]);
 
-  const onLimitChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+  const onLimitChange = (e: SelectChangeEvent<string>) => {
     setLimit(Number(e.target.value));
     setSkip(0);
   };
@@ -33,47 +47,81 @@ const AutoComplete = () => {
   };
 
   return (
-    <div>
-      <input
-        type="text"
-        placeholder="Type something..."
-        value={inputValue}
-        className="border-2 border-gray-300 rounded-md p-2"
-        onChange={(e) => setInputValue(e.target.value)}
-      />
+    <div className="justify-center items-center min-h-screen flex flex-col">
+      <Box sx={{ width: 300 }}>
+        <TextField
+          fullWidth
+          placeholder="Type something..."
+          value={inputValue}
+          onChange={(e) => setInputValue(e.target.value)}
+        />
 
-      <div className="mb-2">
-        <label>
-          Items per page:{" "}
-          <select value={limit || 10} onChange={onLimitChange}>
-            {[5, 10, 20, 50].map((n) => (
-              <option key={n} value={n}>
-                {n}
-              </option>
-            ))}
-          </select>
-        </label>
-      </div>
-
-      <div className="mb-2">
-        <button onClick={onPrevPage} disabled={(skip || 0) === 0}>
-          Prev
-        </button>
-        <button
-          onClick={onNextPage}
-          disabled={(skip || 0) + (limit || 10) >= total}
+        <Box
+          sx={{
+            mt: 1,
+            display: "flex",
+            justifyContent: "space-between",
+            position: "relative",
+            zIndex: 10,
+          }}
         >
-          Next
-        </button>
-      </div>
-      {isLoading && <div>Loading...</div>}
-      {!isLoading && products.length > 0 && (
-        <ul>
-          {products.map((p) => (
-            <li key={p.id}>{p.title}</li>
-          ))}
-        </ul>
-      )}
+          <Button
+            variant="text"
+            onClick={onPrevPage}
+            disabled={(skip || 0) === 0}
+          >
+            Prev
+          </Button>
+          <FormControl fullWidth>
+            <Select
+              id="fetched-products"
+              value={String(limit || 10)}
+              onChange={onLimitChange}
+            >
+              {[5, 10, 20, 50].map((n) => (
+                <MenuItem key={n} value={String(n)}>
+                  {n} per page
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
+          <Button
+            variant="text"
+            onClick={onNextPage}
+            disabled={(skip || 0) + (limit || 10) >= total}
+          >
+            Next
+          </Button>
+        </Box>
+
+        {isLoading && (
+          <Box sx={{ display: "flex", justifyContent: "center", mt: 1 }}>
+            <CircularProgress size={24} />
+          </Box>
+        )}
+
+        {!isLoading && products.length > 0 && (
+          <Paper
+            sx={{
+              position: "relative",
+              zIndex: 10,
+              width: "100%",
+              maxHeight: 200,
+              overflowY: "auto",
+              mt: 1,
+            }}
+            elevation={3}
+          >
+            <List dense>
+              {products.map((p) => (
+                <ListItem key={p.id} component="button">
+                  <ListItemText>{p.title}</ListItemText>
+                </ListItem>
+              ))}
+            </List>
+          </Paper>
+        )}
+      </Box>
     </div>
   );
 };

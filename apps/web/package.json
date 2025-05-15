@@ -9,6 +9,9 @@
     "start": "vite build && vite preview --port 5173"
   },
   "dependencies": {
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.0",
+    "@mui/material": "^7.1.0",
     "@repo/types": "workspace:*",
     "@repo/ui": "workspace:*",
     "@tanstack/react-query": "^5.76.1",
