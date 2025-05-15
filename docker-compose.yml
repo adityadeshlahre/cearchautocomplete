@@ -3,8 +3,8 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    image: quick-start-full:latest
-    container_name: quick-start-full
+    image: cearchautocomplete-full:latest
+    container_name: cearchautocomplete-full
     expose:
       - 3000
       - 5173

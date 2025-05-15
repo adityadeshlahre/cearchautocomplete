@@ -63,10 +63,11 @@ const AutoComplete = () => {
             justifyContent: "space-between",
             position: "relative",
             zIndex: 10,
+            gap: 1,
           }}
         >
           <Button
-            variant="text"
+            variant="outlined"
             onClick={onPrevPage}
             disabled={(skip || 0) === 0}
           >
@@ -86,7 +87,7 @@ const AutoComplete = () => {
             </Select>
           </FormControl>
           <Button
-            variant="text"
+            variant="outlined"
             onClick={onNextPage}
             disabled={(skip || 0) + (limit || 10) >= total}
           >

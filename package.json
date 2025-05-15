@@ -1,5 +1,5 @@
 {
-  "name": "quick-start",
+  "name": "cearchautocomplete",
   "private": true,
   "scripts": {
     "build": "turbo build",
