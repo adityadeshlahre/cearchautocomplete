@@ -1,3 +1,85 @@
+## C-Assignment
+
+### This Project is monorepo include both fontend and backend!
+
+### backend routes
+
+> "/products" Route gives all the products as response
+
+```bash
+curl "https://searchserver-s3ds.onrender.com/products/"
+```
+
+```bash
+curl "https://searchserver-s3ds.onrender.com/products?limit=1" #default skip = 0
+```
+
+```bash
+curl "https://searchserver-s3ds.onrender.com/products?skip=1" #default limit = 100
+```
+
+```bash
+curl "https://searchserver-s3ds.onrender.com/products?limit=1&skip=1" #default limit = 100
+```
+
+> "/product?q={Search Element}&" Route can will accept some parmas such as q = {query} and have two optional params limit and skip
+> NOTE q {query} is mandatory
+> limit to limit the number of resp
+> skip to spik the first n number of objects from the list
+
+```bash
+curl "https://searchserver-s3ds.onrender.com/product?q=ap"
+```
+
+```bash
+curl "https://searchserver-s3ds.onrender.com/product?q=ap&limit=5"
+```
+
+```bash
+curl "https://searchserver-s3ds.onrender.com/product?q=ess&skip=1"
+```
+
+```bash
+curl "https://searchserver-s3ds.onrender.com/product?q=ess&limit=1&skip=1"
+```
+
+### fronted route
+
+> URL : https://searchweb-3dcy.onrender.com
+
+### Local Setup
+
+1 pnpm i
+
+2 cp .env.example .env
+
+> NOTE : if prisma migration fails just fall back indivisual app running command try prisma command
+
+3 pnpm dev
+
+> PRISMA FIX COMMAND : cd ./packages/db && pnpm db:generate
+
+### Running indivisually
+
+#### Web
+
+> cd ./apps/web && pnpm dev
+
+#### server
+
+> cd ./apps/server && pnpm dev
+
+### docker development setup
+
+This monorepo is fully dokarized and it is deployed in render via docker images only
+
+```docker
+docker compose -f dev.docker-compose.yml
+```
+
+<details>
+<summary>Starter Kit Info created by me!</summary>
+
 ## quick ts starter
 
 This is my personal prefered stack for for starting simple full stack projects in one go. Initalized with turborepo in furhter i have added all the stacks along the way.
@@ -201,4 +283,5 @@ Learn more about the power of Turborepo:
 - [CLI Usage](https://turbo.build/repo/docs/reference/command-line-reference)
 ````
 
+</details>
 </details>

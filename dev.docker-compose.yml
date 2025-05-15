@@ -11,7 +11,7 @@ services:
     volumes:
       - ./apps/web/:/app/apps/web
     environment:
-      - DATABASE_URL=postgresql://opensource:sourceopen@postgres:5432/fasoshop
+      - DATABASE_URL=postgresql://postgres:postgres@postgres:5432/postgres
       - PORT=3000
       - UI_PORT=5173
     depends_on:
@@ -31,7 +31,7 @@ services:
     volumes:
       - ./apps/server/:/app/apps/server
     environment:
-      - DATABASE_URL=postgresql://opensource:sourceopen@postgres:5432/fasoshop
+      - DATABASE_URL=postgresql://postgres:postgres@postgres:5432/postgres
       - PORT=3000
       - UI_PORT=5173
     depends_on:
@@ -41,11 +41,11 @@ services:
 
   postgres:
     image: postgres:latest
-    container_name: fasoshop
+    container_name: postgres
     environment:
-      POSTGRES_USER: opensource
-      POSTGRES_PASSWORD: sourceopen
-      POSTGRES_DB: fasoshop
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: postgres
     ports:
       - "5432:5432"
     volumes:

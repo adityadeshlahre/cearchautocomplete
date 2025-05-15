@@ -12,6 +12,6 @@ export default defineConfig({
   preview: {
     host: "0.0.0.0",
     port: 8080,
-    allowedHosts: ["cearchautocomplete-web.onrender.com"],
+    allowedHosts: ["searchweb-3dcy.onrender.com"],
   },
 });
