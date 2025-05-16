@@ -47,7 +47,7 @@ curl "https://searchserver-s3ds.onrender.com/product?q=ess&limit=1&skip=1"
 
 > URL : https://searchweb-3dcy.onrender.com
 
-### Local Setup
+### Local Setup {single command}
 
 1 pnpm i
 
@@ -59,7 +59,9 @@ curl "https://searchserver-s3ds.onrender.com/product?q=ess&limit=1&skip=1"
 
 > PRISMA FIX COMMAND : cd ./packages/db && pnpm db:generate
 
-### Running indivisually
+### Running indivisually { THIS METHOD IS PREFERD TRY THIS FIRST }
+
+> pnpm i
 
 #### Web
 
